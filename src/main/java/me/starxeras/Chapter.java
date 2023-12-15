@@ -98,7 +98,7 @@ public class Chapter {
     }
 
     /**
-     * Returns the content from the special, *with* special foonote formatting.
+     * Returns the content from the special, <em>with</em> special foonote formatting.
      * Example: example: <code>sup class="footnote">a href="#fn-2" id="fnref=2"></a></sup></code> to [2]
      * @see Chapter#getContent()
      * @return String
