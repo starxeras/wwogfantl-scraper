@@ -65,6 +65,7 @@ public class Chapter {
             }
         }
         // remove footnote tags and replace it with more readable format
+        // example: <sup class="footnote"><a href="#fn-2" id="fnref=2">[2]</a></sup> to [2]
         int offset = 0;
         for (int i = 1; i <= fn.size(); i++) {
             if (i > 1) offset += 61;
