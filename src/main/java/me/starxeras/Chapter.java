@@ -15,6 +15,7 @@ public class Chapter {
     private Document document;
     private String title;
     private final StringBuilder content = new StringBuilder();
+    private StringBuilder formattedContent = new StringBuilder();
     /*
     { [1]:
         {footnote:"", charPosition:""}
@@ -64,16 +65,22 @@ public class Chapter {
                 positions.put(footnoteNumber, posList);
             }
         }
+        this.formattedContent = new StringBuilder(this.content.toString());
         // remove footnote tags and replace it with more readable format
         // example: <sup class="footnote"><a href="#fn-2" id="fnref=2">[2]</a></sup> to [2]
         int offset = 0;
         for (int i = 1; i <= fn.size(); i++) {
             if (i > 1) offset += 61;
-            this.content.delete(positions.get(i).getFirst() - offset, positions.get(i).getLast() - offset);
-            this.content.insert(positions.get(i).getFirst() - offset, "[" + fn.get(i - 1) + "]");
+            this.formattedContent.delete(positions.get(i).getFirst() - offset, positions.get(i).getLast() - offset);
+            this.formattedContent.insert(positions.get(i).getFirst() - offset, "[" + fn.get(i - 1) + "]");
         }
     }
 
+    /**
+     * Returns the content from the chapter, without special footnote formatting.
+     * @see Chapter#getFormattedContent()
+     * @return String
+     */
     public String getContent() {
         return this.content.toString();
     }
@@ -88,6 +95,16 @@ public class Chapter {
 
     public String getDocument() {
         return this.document.toString();
+    }
+
+    /**
+     * Returns the content from the special, *with* special foonote formatting.
+     * Example: example: <code>sup class="footnote">a href="#fn-2" id="fnref=2"></a></sup></code> to [2]
+     * @see Chapter#getContent()
+     * @return String
+     */
+    public String getFormattedContent() {
+        return this.formattedContent.toString();
     }
 
 }
