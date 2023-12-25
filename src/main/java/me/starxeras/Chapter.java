@@ -41,7 +41,7 @@ public class Chapter {
         for (int i = 0; i < p.size(); i++) {
             if (i == 0 || i == 1) { continue; }
             this.content.append(p.get(i).toString().replace("<p>", "").replace("</p>", "")
-                    .replace("<em>", "*").replace("</em>", "*")).append('\n');
+                    .replace("<em>", "*").replace("</em>", "*").replace("<strong>", "**").replace("</strong>", "**")).append('\n');
         }
         // title
         Elements h1 = this.document.select("h1");
